@@ -1,4 +1,4 @@
-
+<!-- <?php session_start();?> -->
 <body id="home-market-responsive-shopify-theme" class="index1 template-index">
 	<div id="NavDrawer" class="drawer drawer--left">
 		<div class="drawer__header">
@@ -421,98 +421,17 @@
 								</a>
 							</li>
 							<li class="header-account">
-								<a href="#loginBox" id="login_link">
+								<?php if(isset($_SESSION['user'])){?>
+								<a href="account.html" id="login_link">
 									<i class="fa fa-user"></i>
 									<span class="name">My Account</span>
 								</a>
-								<div id="loginBox" class="loginLightbox" style="display:none;">
-									<div id="lightboxlogin">
-										<form method="post" action="./login.html" id="customer_login" accept-charset="UTF-8">
-											<input type="hidden" value="customer_login" name="form_type"><input type="hidden" name="utf8" value="✓">
-											<div id="bodyBox">
-												<h3>Login</h3>
-												<label for="CustomerEmail" class="hidden-label">Email</label>
-												<input type="email" name="customer[email]" id="CustomerEmail" class="input-full" placeholder="Email">
-												<label for="CustomerPassword" class="hidden-label">Password</label>
-												<input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full" placeholder="Password">
-												<input type="submit" class="btn btn2 btn--full" value="Sign In">
-												<div>
-													<p class="forgot">
-														<a href="#recover" onclick="showRecoverPasswordForm();return false;" id="RecoverPassword">Forgot your password?</a>
-													</p>
-													<p class="create">
-														<a href="#create_accountBox" onclick="showCreateAccountForm();return false;" id="CreateAccountPassword">Create New Account</a>
-													</p>
-												</div>
-												<p>
-													<a href="#" onclick="$.fancybox.close();">Close</a>
-												</p>
-											</div>
-										</form>
-									</div>
-									<div id="recover-password" style="display:none;">
-										<h3>Reset your password</h3>
-										<p class="note">
-											We will send you an email to reset your password.
-										</p>
-										<form method="post" action="recover.html" accept-charset="UTF-8">
-											<input type="hidden" value="recover_customer_password" name="form_type"><input type="hidden" name="utf8" value="✓">
-											<p>
-												<label for="recover-email" class="label">Email</label>
-											</p>
-											<input type="email" value="" size="30" name="email" id="recover-email" class="text">
-											<div class="action_bottom">
-												<input class="btn btn2" type="submit" value="Submit">
-												<a class="btn back" href="#" onclick="hideRecoverPasswordForm();return false;">Back to Login</a>
-											</div>
-											<p class="close">
-												<a href="#" onclick="$.fancybox.close();">Close</a>
-											</p>
-										</form>
-									</div>
-									<div id="create_accountBox" style="display:none;">
-										<h3>Create Account</h3>
-										<div class="form-vertical">
-											<form method="post" action="./account.html" id="create_customer" accept-charset="UTF-8">
-												<input type="hidden" value="create_customer" name="form_type"><input type="hidden" name="utf8" value="✓">
-												<label for="FirstName" class="hidden-label">First Name</label>
-												<input type="text" name="customer[first_name]" id="FirstName" class="input-full" placeholder="First Name">
-												<label for="LastName" class="hidden-label">Last Name</label>
-												<input type="text" name="customer[last_name]" id="LastName" class="input-full" placeholder="Last Name">
-												<label for="Email" class="hidden-label">Email</label>
-												<input type="email" name="customer[email]" id="Email" class="input-full" placeholder="Email">
-												<label for="CreatePassword" class="hidden-label">Password</label>
-												<input type="password" name="customer[password]" id="CreatePassword" class="input-full" placeholder="Password">
-												<p>
-													<input type="submit" value="Create" class="btn btn2 btn--full">
-												</p>
-												<p>
-													<span><a class="btn" href="#" onclick="hideRecoverPasswordForm();return false;">Back to Login</a></span>
-												</p>
-												<p class="close">
-													<a href="#" onclick="$.fancybox.close();">Close</a>
-												</p>
-											</form>
-										</div>
-									</div>
-									<script>
-											function showRecoverPasswordForm() {
-											  $('#recover-password').css("display",'block');
-											  $('#lightboxlogin').css("display",'none');
-											  $('#create_accountBox').css("display",'none');
-											}
-											function hideRecoverPasswordForm() {
-											  $('#recover-password').css("display",'none');
-											  $('#lightboxlogin').css("display",'block');
-											  $('#create_accountBox').css("display",'none');
-											}
-											function showCreateAccountForm(){
-											  $('#recover-password').css("display",'none');
-											  $('#lightboxlogin').css("display",'none');
-											  $('#create_accountBox').css("display",'block');
-											}
-										  </script>
-								</div>
+								<?php }if(!isset($_SESSION['user'])){?>
+									<a href="?controller=user&&action=login" id="login_link">
+									<i class="fa fa-user"></i>
+									<span class="name">Đăng Nhập</span>
+								</a>
+								<?php }?>
 							</li>
 							<li class="header-cart">
 								<a href=".cart.html" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">

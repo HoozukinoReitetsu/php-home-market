@@ -41,7 +41,8 @@
 	<script src="assets\js\jquery.flexslider-min.js" type="text/javascript"></script>
 </head>
 
-<?php include 'partial/header.php'; ?>
+<?php include 'partial/header.php'; 
+?>
 <main class="main-content">
 			<div class="breadcrumb-wrapper">
 				<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
@@ -54,9 +55,16 @@
 			<div class="wrapper">
 				<div class="grid">
 					<div class="grid__item large--one-third push--large--one-third text-center">
+						<?php 	if(isset($_COOKIE['user-error'])){?>
+							<div class="note form-error" id="ResetSuccess">
+									 <?php
+									 	echo $_COOKIE['user-error'];
+											 ?>
+											 </div>
+									 <?php }?>	
 						<h1>Create Account</h1>
 						<div class="form-vertical">
-							<form method="POST" action="controller/user.php?action=create" id="create_customer" accept-charset="UTF-8">
+							<form method="POST" action="?controller=user&&action=register" id="create_customer" accept-charset="UTF-8">
 								<input type="hidden" value="create_customer" name="form_type"><input type="hidden" name="utf8" value="✓">
 								<label for="FirstName" class="hidden-label">First Name</label>
 								<input type="text" name="first_name" id="FirstName" class="input-full" placeholder="First Name" autocapitalize="words" autofocus="">
@@ -69,7 +77,7 @@
 								<!-- <label for="CreatePassword" class="hidden-label">RePassword</label>
 								<input type="password" name="repassword" id="RePassword" class="input-full" placeholder="RePassword"> -->
 								<p>
-									<input type="submit" value="Create" class="btn btn--full" id="btn1">
+									<input type="submit" value="Create" name="Create" class="btn btn--full" id="btn1">
 								</p>
 								<a href="index.html">Close</a>
 							</form>

@@ -2,12 +2,11 @@
 /**
  * 
  */
-include 'connect.php';
-class user
-{	
-	private $Username,$FirstName,$LastName,$Address,$Email,$Phone,$CreatedDate,$ModifiedDate,$Status,$Password;
-	
 
+
+class user
+{	 
+	private $Username,$FirstName,$LastName,$Address,$Email,$Phone,$CreatedDate,$ModifiedDate,$Status,$Password;
 	/**
 	 * Get the value of Username
 	 */ 
@@ -186,9 +185,35 @@ class user
 		$this->Status = $Status;
 
 		return $this;
+    }
+	public function register(){  
+        return $sql="INSERT INTO `dbo.user`( `Username`, `Password`, `FirstName`, `LastName`, `Email`,`CreatedDate`, `Status`) VALUES ('$this->Username','$this->Password','$this->FirstName','$this->LastName','$this->Email','$this->CreatedDate','1')";
+
 	}
-	public function register(){
-		$sql="INSERT INTO `dbo.user`( `Username`, `Password`, `FirstName`, `LastName`, `Email`,`ModifiedDate`, `Status`) VALUES ('$this->getUsername','$this->getPassword','$this->getFirstName','$this->getLastName','$this->getEmail','$this->getModifiedDate','1')";
+
+	/**
+	 * Get the value of Password
+	 */ 
+	public function getPassword()
+	{
+		return $this->Password;
 	}
+
+	/**
+	 * Set the value of Password
+	 *
+	 * @return  self
+	 */ 
+	public function setPassword($Password)
+	{
+		$this->Password = $Password;
+
+		return $this;
+    }
+    public function login(){
+        $sql="SELECT * FROM `dbo.user` WHERE `Username`='$this->Username'AND `Password`='$this->Password'";
+        $result = mysqli_query(DB::connect(), $sql); 
+        return mysqli_num_rows( $result);
+    }
 }
 ?>
