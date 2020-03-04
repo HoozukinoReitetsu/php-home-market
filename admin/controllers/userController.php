@@ -1,5 +1,5 @@
 <?php 
-include ($_SERVER["DOCUMENT_ROOT"]."/php-home-market/model/user.php");
+include ("model/user.php");
 include "baseController.php";
 class userController extends BaseController{
  public function login(){
@@ -23,7 +23,13 @@ class userController extends BaseController{
      
  }
  public function index(){
-     $this->render('account');
+     $user=new user();     
+     $this->render('account',$user->selectAll());
+ }
+ public function delete(){
+     $user=new user();
+     $user->setUsernameID($_GET['id']);
+     $user->delete();
  }
 }
 ?>

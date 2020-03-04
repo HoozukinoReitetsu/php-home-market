@@ -6,7 +6,7 @@
 
 class user
 {	 
-	private $Username,$FirstName,$LastName,$Address,$Email,$Phone,$CreatedDate,$ModifiedDate,$Status,$Password;
+	private $Username,$FirstName,$LastName,$Address,$Email,$Phone,$CreatedDate,$ModifiedDate,$Status,$Password,$UserID;
 	/**
 	 * Get the value of Username
 	 */ 
@@ -210,6 +210,39 @@ class user
         $sql="SELECT * FROM `dbo.user` WHERE `Username`='$this->Username'AND `Password`='$this->Password'AND`permission`='1'";
         $result = mysqli_query(DB::connect(), $sql); 
         return mysqli_num_rows( $result);
-    }
+	}
+	public function selectAll(){
+		$sql="SELECT * FROM `dbo.user` WHERE 1";
+		$result=mysqli_query(DB::connect(),$sql);
+		$data=array();
+		while($tmp=mysqli_fetch_assoc($result)){
+			$data[]=$tmp;
+		}
+		return $data;
+	}
+	public function delete(){
+		$sql="DELETE FROM `dbo.user` WHERE  `Username`=$this->UserID";
+		return mysqli_query(DB::connect(),$sql);
+	}
+
+	/**
+	 * Get the value of UserID
+	 */ 
+	public function getUserID()
+	{
+		return $this->UserID;
+	}
+
+	/**
+	 * Set the value of UserID
+	 *
+	 * @return  self
+	 */ 
+	public function setUserID($UserID)
+	{
+		$this->UserID = $UserID;
+
+		return $this;
+	}
 }
 ?>
