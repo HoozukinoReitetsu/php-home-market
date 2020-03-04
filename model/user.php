@@ -187,7 +187,7 @@ class user
 		return $this;
     }
 	public function register(){  
-        return $sql="INSERT INTO `dbo.user`( `Username`, `Password`, `FirstName`, `LastName`, `Email`,`CreatedDate`, `Status`) VALUES ('$this->Username','$this->Password','$this->FirstName','$this->LastName','$this->Email','$this->CreatedDate','1')";
+        return $sql="INSERT INTO `dbo.user`( `Username`, `Password`, `FirstName`, `LastName`, `Email`,`CreatedDate`, `Status`,`permission`) VALUES ('$this->Username','$this->Password','$this->FirstName','$this->LastName','$this->Email','$this->CreatedDate','1','0')";
 
 	}
 
