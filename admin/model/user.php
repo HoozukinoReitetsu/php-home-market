@@ -6,7 +6,7 @@
 
 class user
 {	 
-	private $Username,$FirstName,$LastName,$Address,$Email,$Phone,$CreatedDate,$ModifiedDate,$Status,$Password,$UserID;
+	private $Username,$FirstName,$LastName,$Address,$Email,$Phone,$CreatedDate,$ModifiedDate,$Status,$Password,$UserID,$permission;
 	/**
 	 * Get the value of Username
 	 */ 
@@ -205,10 +205,19 @@ class user
 		$this->Password = $Password;
 
 		return $this;
-    }
+	}
+	public function update($col,$data){
+		$sql="UPDATE `dbo.user` SET `$col`='$data'WHERE `UserID`=$this->UserID";
+		return mysqli_query(DB::connect(),$sql);
+
+	}
+	public function insert(){
+		$sql="INSERT INTO `dbo.user`(`Username`, `Password`, `FirstName`, `LastName`, `Address`, `Email`, `Phone`, `CreatedDate`, `Status`, `permission`) VALUES ('$this->Username','$this->Password','$this->FirstName','$this->LastName','$this->Address','$this->Email','$this->Phone','$this->CreatedDate','$this->Status','$this->permission')";
+		return mysqli_query(DB::connect(),$sql);
+	}
     public function login(){
         $sql="SELECT * FROM `dbo.user` WHERE `Username`='$this->Username'AND `Password`='$this->Password'AND`permission`='1'";
-        $result = mysqli_query(DB::connect(), $sql); 
+		$result = mysqli_query(DB::connect(), $sql); 
         return mysqli_num_rows( $result);
 	}
 	public function selectAll(){
@@ -220,8 +229,16 @@ class user
 		}
 		return $data;
 	}
+	public function selectByID($id){
+		$sql="SELECT * FROM `dbo.user` WHERE `UserID`=$id";
+		$result=mysqli_query(DB::connect(),$sql);
+		$data=mysqli_fetch_assoc($result);
+		// var_dump($data);
+		// die();
+		return $data;
+	}
 	public function delete(){
-		$sql="DELETE FROM `dbo.user` WHERE  `Username`=$this->UserID";
+		$sql="DELETE FROM `dbo.user` WHERE  `UserID`=$this->UserID";
 		return mysqli_query(DB::connect(),$sql);
 	}
 
@@ -241,6 +258,26 @@ class user
 	public function setUserID($UserID)
 	{
 		$this->UserID = $UserID;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of permission
+	 */ 
+	public function getPermission()
+	{
+		return $this->permission;
+	}
+
+	/**
+	 * Set the value of permission
+	 *
+	 * @return  self
+	 */ 
+	public function setPermission($permission)
+	{
+		$this->permission = $permission;
 
 		return $this;
 	}

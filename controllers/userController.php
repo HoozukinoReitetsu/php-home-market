@@ -9,7 +9,7 @@ class userController extends BaseController{
     $user->setLastName($_POST['last_name']);
     $user->setUsername($_POST['email']);
     $user->setEmail($_POST['email']); 
-    $user->setPassword($_POST['password']);
+    $user->setPassword(md5($_POST['password']));
     $user->setCreatedDate(date('H:i:s d-m-Y', time()));
      if (mysqli_query(DB::connect(),$user->register())) {
             session_start();
@@ -33,7 +33,7 @@ class userController extends BaseController{
       $user=new user();
     if(isset($_POST['login'])){  
         $user->setUsername($_POST['email']); 
-        $user->setPassword($_POST['password']); 
+        $user->setPassword(md5($_POST['password'])); 
         if($user->login()){
             $_SESSION['user']=$user->getUsername();
              header("Location:index.php");

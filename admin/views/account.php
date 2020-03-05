@@ -36,7 +36,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Basic Datatable</h5>
-                                <a class="btn btn-primary" href="?controller=user&&action=create" role="button" style="  margin: 10px;">Create New CusTommer</a>
+                                <a class="btn btn-primary" href="?controller=user&&action=edit" role="button" style="  margin: 10px;">Create New CusTommer</a>
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>
@@ -48,7 +48,9 @@
                                                 <th>Email</th>
                                                 <th>Phone</th>
                                                 <th>CreatedDate</th>
-                                                <th>ModifiedDate</th>
+                                                <th>ModifiedDate</th>                                              
+                                                <th>Status</th>
+                                                <th>permission</th>
                                                 <th>edit</th>
                                             </tr>
                                         </thead>
@@ -63,6 +65,8 @@
                                                 <td><?php echo $user['Phone'];?></td>
                                                 <td><?php echo $user['CreatedDate'];?></td>
                                                 <td><?php echo $user['ModifiedDate'];?></td>
+                                                <td><?php if($user['Status']==1){echo"hiển thị";}else{echo"ẩn";}?></td>
+                                                <td><?php if($user['permission']==1){echo"Admin";}else{echo "Custommer";}?></td>
                                                 <td>
                                                 <a href="?controller=user&&action=edit&&id=<?php echo $user['UserID'];?>"><i class="fas fa-edit"></i></a>
                                                 <a href="?controller=user&&action=delete&&id=<?php echo $user['UserID'];?>"><i class="fas fa-trash" onclick="OK(event)"></i></a>
