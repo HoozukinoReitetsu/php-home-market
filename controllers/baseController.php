@@ -7,7 +7,7 @@ class BaseController
     // Kiểm tra file gọi đến có tồn tại hay không?
     
     $view_file = 'views/'. $file . '.php';
-    
+     
     if (is_file($view_file)) {
       // Nếu tồn tại file đó thì tạo ra các biến chứa giá trị truyền vào lúc gọi hàm
       extract($data);

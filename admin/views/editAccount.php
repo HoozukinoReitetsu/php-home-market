@@ -1,4 +1,5 @@
-<?php include"partial/header.php";?>
+<?php include"partial/header.php";
+?>
 <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -35,6 +36,9 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Personal Info</h4>
                                     <div class="form-group row">
+                                        <p class="error col-sm-3 text-right control-label col-form-label" style="color:red;"><?php if(isset($data['err'])) echo $data['err'];?></p>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
                                         <div class="col-sm-9">
                                             <input type="text" value="<?php if(isset($data['FirstName'])) echo $data['FirstName']?>" class="form-control" id="fname" name="fname" placeholder="First Name Here">
@@ -43,26 +47,26 @@
                                     <div class="form-group row">
                                         <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" value="<?php if(isset($data['FirstName'])) echo $data['LastName'];?>"class="form-control" id="lname"name="lname" placeholder="Last Name Here">
+                                            <input type="text" value="<?php if(isset($data['LastName'])) echo $data['LastName'];?>"class="form-control" id="lname"name="lname" placeholder="Last Name Here">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lname" class="col-sm-3 text-right control-label col-form-label">UserName</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="username" name="user" placeholder="User Name Here"value="<?php  if(isset($data['Username']))
-                                                echo $data['Username'];?>" <?php  if(isset($data['Username'])) echo "disabled"?> required>
+                                                echo $data['Username'];?>" <?php  if(isset($data['Username'])&&isset($data['UserID'])) echo "disabled"?> required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lname" class="col-sm-3 text-right control-label col-form-label">Password</label>
                                         <div class="col-sm-9">
-                                            <input type="password" name='password' class="form-control" id="lname" placeholder="Password Here" <?php  if(!isset($data['Username'])) echo "required"?>>
+                                            <input type="password" name='password' class="form-control" id="lname" placeholder="Password Here" <?php  if(!isset($data['UserID'])) echo "required"?>>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Phone</label>
                                         <div class="col-sm-9">
-                                            <input type="text" value="0<?php if(isset($data['Phone'])) echo $data['Phone']?>" class="form-control" id="phone" name="phone" placeholder="Phone Here">
+                                            <input type="text" value="<?php if(isset($data['Phone'])) echo $data['Phone']?>" class="form-control" id="phone" name="phone" placeholder="Phone Here">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -74,7 +78,7 @@
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">	Email </label>
                                         <div class="col-sm-9">
-                                            <input type="text" value="<?php  if(isset($data['Email'])) echo $data['Email'];?>" class="form-control" id="email1" name="email" placeholder="	Email  Here">
+                                            <input type="text" value="<?php  if(isset($data['Email'])) echo $data['Email'];?>" class="form-control" id="email1" name="email" placeholder="Email  Here">
                                         </div>
                                     </div>
                                     <div class="form-group row">

@@ -21,6 +21,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script src="assets/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -171,7 +172,9 @@
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="
-						?controller=user&&action=index" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">CusTommer</span></a></li>
+						?controller=user&&action=index" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">CusTommer</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="
+						?controller=product&&action=index" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Product</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

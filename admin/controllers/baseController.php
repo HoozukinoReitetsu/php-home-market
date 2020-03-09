@@ -7,7 +7,7 @@ class BaseController
     // Kiểm tra file gọi đến có tồn tại hay không?
     
     $view_file = 'views/'. $file . '.php';
-    // var_dump($data);
+    // var_dump($data); 
     if (is_file($view_file)) {
       // Nếu tồn tại file đó thì tạo ra các biến chứa giá trị truyền vào lúc gọi hàm
       // Sau đó lưu giá trị trả về khi chạy file view template với các dữ liệu đó vào 1 biến chứ chưa hiển thị luôn ra trình duyệt      

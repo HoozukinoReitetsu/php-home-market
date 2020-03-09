@@ -23,10 +23,11 @@ class userController extends BaseController{
      $user=new user();
      
      if(isset($_GET['id'])){
+         //cập nhật
         $user->setUserID($_GET['id']);
         $data=$user->selectByID($user->getUserID());        
          if(isset($_POST['create'])){
-             var_dump($_POST);
+            //  var_dump($_POST);
             if(($data['FirstName'])!=$_POST['fname']&& isset($_POST['fname'])) $user->update('FirstName',$_POST['fname']);
             if(($data['LastName'])!=$_POST['lname']&& isset($_POST['lname'])) $user->update('LastName',$_POST['lname']);
             if(($data['Password'])!=md5($_POST['password'])&& isset($_POST['password'])) $user->update('Password',md5($_POST['Password']));
@@ -40,8 +41,21 @@ class userController extends BaseController{
         }
          $this->render('editAccount',$data);       
      }else{
+         //thêm mới
            if(isset($_POST['create'])){
-            var_dump($_POST);
+            // var_dump($_POST);                   
+            if(($user->select('Username',$_POST['user']))!=null){
+                $data=array(); 
+                $err="Tài Khoản Đã Tồn Tại";               
+                $data["err"]=$err;
+                $data["FirstName"]=$_POST['fname']; 
+                $data["LastName"]=$_POST['lname'];
+                $data["Username"]= $_POST['user'];
+                $data["Email"]=$_POST['email'];
+                $data["Phone"]=$_POST['phone'];
+                $data["Address"]=$_POST['address'];
+                $this->render('editAccount',$data);            
+            }else{
             $user->setFirstName($_POST['fname']);
             $user->setLastName($_POST['lname']);
             $user->setUsername($_POST['user']);
@@ -49,10 +63,12 @@ class userController extends BaseController{
             $user->setEmail($_POST['email']);
             $user->setStatus($_POST['status']);
             $user->setPhone($_POST['phone']);
+            $user->setAddress($_POST['address']);
             $user->setPermission($_POST['permission']);
             $user->setCreatedDate(date('H:i:s d-m-Y', time()));
             $user->insert();
             header('location:?controller=user&&action=index');
+            }            
            }
             $this->render('editAccount');
         }  

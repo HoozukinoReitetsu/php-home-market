@@ -211,6 +211,14 @@ class user
 		return mysqli_query(DB::connect(),$sql);
 
 	}
+	public function select($col,$data){
+		$sql="SELECT * FROM `dbo.user` WHERE `$col`='$data' ";
+		$result=mysqli_query(DB::connect(),$sql);
+		$data=mysqli_fetch_assoc($result);
+		// var_dump($data);
+		// die();
+		return $data;
+	}
 	public function insert(){
 		$sql="INSERT INTO `dbo.user`(`Username`, `Password`, `FirstName`, `LastName`, `Address`, `Email`, `Phone`, `CreatedDate`, `Status`, `permission`) VALUES ('$this->Username','$this->Password','$this->FirstName','$this->LastName','$this->Address','$this->Email','$this->Phone','$this->CreatedDate','$this->Status','$this->permission')";
 		return mysqli_query(DB::connect(),$sql);
